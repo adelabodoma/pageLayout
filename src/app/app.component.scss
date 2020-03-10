@@ -1,0 +1,23 @@
+header {
+  height: 40px;
+  background-color: #f4f4f4;
+
+  .nav-items {
+    list-style: none;
+    display: flex;
+
+    .nav-item {
+      &--edit {
+        margin-left: auto;
+      }
+    }
+
+    .nav-link {
+      color: #333;
+      background: none;
+      border: 0;
+      outline: 0;
+    }
+  }
+
+}
