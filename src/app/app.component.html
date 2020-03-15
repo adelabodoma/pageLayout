@@ -20,7 +20,7 @@
   <div class="row section edit-mode" *ngFor="let row of list.rows; let i = index">
     <div ngbDropdown>
       <div class="add-row" ngbDropdownToggle>
-        <i class="fa fa-plus"></i>
+        <i class="fa fa-plus" title="Add"></i>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <ul class="row-type">
             <li (click)="addRow('1', i)" class="item-type"> <i class="fa fa-columns"></i> one Column </li>
@@ -33,24 +33,39 @@
       </div>
     </div>
 
+    <div ngbDropdown>
+      <div class="edit-row" ngbDropdownToggle>
+        <i class="fa fa-edit" title="Edit"></i>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <ul class="row-type">
+            <li (click)="editRow('1', i)" class="item-type"> <i class="fa fa-columns"></i> one Column </li>
+            <li (click)="editRow('2', i)" class="item-type"> <i class="fa fa-columns"></i> Two Columns </li>
+            <li (click)="editRow('3', i)" class="item-type"> <i class="fa fa-columns"></i> Three Columns </li>
+            <li (click)="editRow('1-2', i)" class="item-type"> <i class="fa fa-columns"></i> One-third left column</li>
+            <li (click)="editRow('2-1', i)" class="item-type"> <i class="fa fa-columns"></i> One-third right column</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
     <ng-container *ngIf="row.type.split('-').length === 1">
       <div [ngClass]="{'col-sm-12': row.type == 1, 'col-sm-6': row.type ==2, 'col-sm-4': row.type ==3}"
         *ngFor="let column of row.columns">
-        <span class="add-component"><i class="fa fa-plus"></i></span>
+        <span class="add-component"><i class="fa fa-plus" title="Add"></i></span>
       </div>
     </ng-container>
 
     <ng-container *ngIf="row.type == '1-2'">
       <div [ngClass]="{'col-sm-4':  i==0, 'col-sm-8': i==1, 'col-sm-12': i !== 0 && i !== 1}"
-       *ngFor="let column of row.columns; let i = index">
-        <span class="add-component"><i class="fa fa-plus"></i></span>
+        *ngFor="let column of row.columns; let i = index">
+        <span class="add-component"><i class="fa fa-plus" title="Add"></i></span>
       </div>
     </ng-container>
 
     <ng-container *ngIf="row.type == '2-1'">
       <div [ngClass]="{'col-sm-8':  i==0, 'col-sm-4': i==1, 'col-sm-12': i !== 0 && i !== 1}"
-       *ngFor="let column of row.columns; let i = index">
-        <span class="add-component"><i class="fa fa-plus"></i></span>
+        *ngFor="let column of row.columns; let i = index">
+        <span class="add-component"><i class="fa fa-plus" title="Add"></i></span>
       </div>
     </ng-container>
 

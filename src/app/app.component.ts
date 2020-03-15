@@ -43,16 +43,17 @@ export class AppComponent implements OnInit {
         break;
     }
 
-
-
     this.list.rows.splice(index, 0, {
       id: '20',
       type: type,
       columns: columns
     })
  
-    console.log(this.list);
+  }
 
+  editRow(type, index) {
+    debugger
+    this.list.rows[index].type = type;
   }
 
 }

@@ -26,10 +26,10 @@ header {
 .edit-mode {
   margin-top: 20px;
   border: 1px dashed #ccc;
-  height: 150px;
+  min-height: 150px;
   position: relative;
 
-  [class^=col] { height: 100%;}
+  [class^=col] { height: 150px;}
   [class^=col]:nth-child(n+2) {
     border: 1px dashed #ccc;
   }
@@ -76,7 +76,8 @@ header {
   }
 }
 
-.add-row {
+.add-row, .edit-row {
+  font-size: .9rem;
  width: 30px;
  height: 30px;
  transition: all .2s;
@@ -93,6 +94,10 @@ header {
   background-color: #ca5010; 
   color: #fff;
  }
+}
+
+.edit-row {
+  top: 30px;
 }
 
 .add-component {
@@ -125,3 +130,8 @@ header {
   }
 }
 
+
+
+.dropdown-toggle::after {
+  display:none;
+}
