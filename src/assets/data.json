@@ -1,0 +1,84 @@
+{
+    "page-info": {
+        "rows": [
+            {
+                "id": 1,
+                "type": "3",
+                "columns": [
+                    {
+                        "id": 1,
+                        "components": [
+                            {
+                                "id": 1,
+                                "title": "Component 1",
+                                "URL": "example.com",
+                                "icon": "icon"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "components": [
+                            {
+                                "id": 1,
+                                "title": "Component 1",
+                                "URL": "example.com",
+                                "icon": "icon"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 3,
+                        "components": [
+                            {
+                                "id": 1,
+                                "title": "Component 1",
+                                "URL": "example.com",
+                                "icon": "icon"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 1,
+                "type": "3",
+                "columns": [
+                    {
+                        "id": 1,
+                        "components": [
+                            {
+                                "id": 1,
+                                "title": "Component 1",
+                                "URL": "example.com",
+                                "icon": "icon"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "components": [
+                            {
+                                "id": 1,
+                                "title": "Component 1",
+                                "URL": "example.com",
+                                "icon": "icon"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 3,
+                        "components": [
+                            {
+                                "id": 1,
+                                "title": "Component 1",
+                                "URL": "example.com",
+                                "icon": "icon"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
@@ -10,9 +11,10 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [NgbDropdown],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
