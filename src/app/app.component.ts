@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { List } from './data-interface.js';
+import { v4 as uuidv4 } from 'uuid';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -11,25 +13,18 @@ import * as data from '../assets/data.json'
 })
 export class AppComponent implements OnInit {
   title = 'page-layout';
-  private list: List
+  private list: List;
+  private schema;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.list = data.default['page-info'];
-
-    setTimeout(() => {
-      // this.addRow('2-1')
-      // this.addRow('3')
-      // this.addRow('1-2')
-      // this.addRow('2')
-      // this.addRow('1')
-    }, 2000);
+    this.schema = this.list.schema;
   }
 
   addRow(type, index) {
-    let columns;
-
+    let columns, ID;
 
     switch (type) {
       case '1-2':
@@ -43,8 +38,11 @@ export class AppComponent implements OnInit {
         break;
     }
 
+    // GENERATE ID
+    ID = uuidv4();
+
     this.list.rows.splice(index, 0, {
-      id: '20',
+      id: ID,
       type: type,
       columns: columns
     })
@@ -52,31 +50,11 @@ export class AppComponent implements OnInit {
   }
 
   editRow(type, index) {
-    debugger
     this.list.rows[index].type = type;
   }
 
-}
+  removeRow(id){
+    this.list.rows = this.list.rows.filter(item => item.id != id)
+  }
 
-
-
-
-interface List {
-  rows: ListItem[]
-}
-
-interface ListItem {
-  id: string;
-  type: string;
-  columns: ItemComponents[]
-}
-interface ItemComponents {
-  id: string;
-  components: ItemComponent[]
-}
-interface ItemComponent {
-  id: string;
-  title: string;
-  URL: string;
-  icon: string
 }

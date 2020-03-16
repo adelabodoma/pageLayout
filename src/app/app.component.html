@@ -1,20 +1,4 @@
-<header class="header">
-  <div class="container">
-    <nav>
-      <ul class="nav-items">
-        <div ngbDropdown class="d-inline-block">
-          <button class="nav-link" id="dropdownBasic1" ngbDropdownToggle><i class="fa fa-plus"></i> Add</button>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button (click)="addRow('3', 0)" ngbDropdownItem>Row</button>
-          </div>
-        </div>
-
-        <li class="nav-item"><a class="nav-link" href="">Save as draft</a></li>
-        <li class="nav-item nav-item--edit"><a class="nav-link" href="">Edit</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<app-nav></app-nav>
 
 <main class="container">
   <div class="row section edit-mode" *ngFor="let row of list.rows; let i = index">
@@ -23,11 +7,8 @@
         <i class="fa fa-plus" title="Add"></i>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <ul class="row-type">
-            <li (click)="addRow('1', i)" class="item-type"> <i class="fa fa-columns"></i> one Column </li>
-            <li (click)="addRow('2', i)" class="item-type"> <i class="fa fa-columns"></i> Two Columns </li>
-            <li (click)="addRow('3', i)" class="item-type"> <i class="fa fa-columns"></i> Three Columns </li>
-            <li (click)="addRow('1-2', i)" class="item-type"> <i class="fa fa-columns"></i> One-third left column</li>
-            <li (click)="addRow('2-1', i)" class="item-type"> <i class="fa fa-columns"></i> One-third right column</li>
+            <li *ngFor="let item of schema" (click)="addRow(item.type, i)" class="item-type"> <i
+                class="{{item.iconClass}}"></i> {{ item.name}} </li>
           </ul>
         </div>
       </div>
@@ -38,20 +19,35 @@
         <i class="fa fa-edit" title="Edit"></i>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <ul class="row-type">
-            <li (click)="editRow('1', i)" class="item-type"> <i class="fa fa-columns"></i> one Column </li>
-            <li (click)="editRow('2', i)" class="item-type"> <i class="fa fa-columns"></i> Two Columns </li>
-            <li (click)="editRow('3', i)" class="item-type"> <i class="fa fa-columns"></i> Three Columns </li>
-            <li (click)="editRow('1-2', i)" class="item-type"> <i class="fa fa-columns"></i> One-third left column</li>
-            <li (click)="editRow('2-1', i)" class="item-type"> <i class="fa fa-columns"></i> One-third right column</li>
+            <li *ngFor="let item of schema" (click)="editRow(item.type, i)" class="item-type"> <i
+                class="{{item.iconClass}}"></i> {{ item.name}} </li>
           </ul>
         </div>
       </div>
     </div>
 
+    <div class="remove-row">
+      <i class="fa fa-trash" (click)="removeRow(row.id)"></i>
+    </div>
+
     <ng-container *ngIf="row.type.split('-').length === 1">
       <div [ngClass]="{'col-sm-12': row.type == 1, 'col-sm-6': row.type ==2, 'col-sm-4': row.type ==3}"
         *ngFor="let column of row.columns">
-        <span class="add-component"><i class="fa fa-plus" title="Add"></i></span>
+        <div ngbDropdown>
+          <div class="add-component--list" ngbDropdownToggle>
+            <span class="add-component"><i class="fa fa-plus" title="Add"></i></span>
+            <!-- <i class="fa fa-edit" title="Edit"></i> -->
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <ul class="row-type">
+                <li *ngFor="let component of column.components" (click)="addComponent(item.type, i)" class="item-type"> <i
+                    class="{{component.icon}}"></i> {{ component.title}} </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="component">
+          <span>{{column.title}}</span>
+        </div>
       </div>
     </ng-container>
 

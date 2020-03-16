@@ -1,0 +1,17 @@
+<header class="header">
+    <div class="container">
+      <nav>
+        <ul class="nav-items">
+          <div ngbDropdown class="d-inline-block">
+            <button class="nav-link" id="dropdownBasic1" ngbDropdownToggle><i class="fa fa-plus"></i> Add</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button (click)="addRow('3', 0)" ngbDropdownItem>Row</button>
+            </div>
+          </div>
+  
+          <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-save"></i> Save as draft</a></li>
+          <li class="nav-item nav-item--edit"><a class="nav-link" href=""><i class="fa fa-edit"></i>  Edit</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
