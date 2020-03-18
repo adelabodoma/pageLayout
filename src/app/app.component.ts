@@ -13,28 +13,38 @@ import * as data from '../assets/data.json'
 })
 export class AppComponent implements OnInit {
   title = 'page-layout';
-  private list: List;
-  private schema;
+  public list: List;
+  public schema;
+  public components;
+  public editMode: boolean;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.list = data.default['page-info'];
+    this.list = data['default']['page-info'];
     this.schema = this.list.schema;
+    this.components = this.list.components
   }
 
   addRow(type, index) {
+
     let columns, ID;
 
     switch (type) {
       case '1-2':
-        columns = Array(2).fill({ id: 10, components: [] });
+        columns = Array(2).fill(undefined).map(() => {
+          return { id: uuidv4(), components: [] }
+        });
         break;
       case '2-1':
-        columns = Array(2).fill({ id: 10, components: [] });
+        columns = Array(2).fill(undefined).map(() => {
+          return { id: uuidv4(), components: [] }
+        });
         break;
       default:
-        columns = Array(+type).fill({ id: 10, components: [] });
+        columns = Array(+type).fill(undefined).map(() => {
+          return { id: uuidv4(), components: [] }
+        });
         break;
     }
 
@@ -46,15 +56,32 @@ export class AppComponent implements OnInit {
       type: type,
       columns: columns
     })
- 
+
   }
 
   editRow(type, index) {
     this.list.rows[index].type = type;
   }
 
-  removeRow(id){
+  removeRow(id) {
     this.list.rows = this.list.rows.filter(item => item.id != id)
+  }
+
+  addComponent(rowId, columnId, component) {
+    this.list.rows[rowId].columns[columnId].components.push(component);
+    console.log(this.list.rows)
+
+    this.http.get('aa.html').subscribe(res=>{
+      debugger
+    })
+  }
+
+  removeComponent(rowId, columnId, componentId) {
+    this.list.rows[rowId].columns[columnId].components.splice(componentId, 1);
+  }
+
+  chnageModeEdit(mode) {
+    this.editMode = mode;
   }
 
 }

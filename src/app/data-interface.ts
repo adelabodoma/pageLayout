@@ -6,7 +6,8 @@ export interface Schema {
 
 export interface List {
     rows: ListItem[],
-    schema: Schema
+    schema: Schema,
+    components: ItemComponent[]
 }
 
 export interface ListItem {

@@ -16,13 +16,13 @@
                             },
                             {
                                 "id": 1,
-                                "title": "Component 1",
+                                "title": "Component 2",
                                 "URL": "example.com",
                                 "icon": "fa fa-television"
                             },
                             {
                                 "id": 1,
-                                "title": "Component 1",
+                                "title": "Component 3",
                                 "URL": "example.com",
                                 "icon": "fa fa-television"
                             }
@@ -39,13 +39,13 @@
                             },
                             {
                                 "id": 1,
-                                "title": "Component 1",
+                                "title": "Component 2",
                                 "URL": "example.com",
                                 "icon": "fa fa-television"
                             },
                             {
                                 "id": 1,
-                                "title": "Component 1",
+                                "title": "Component 3",
                                 "URL": "example.com",
                                 "icon": "fa fa-television"
                             }
@@ -62,13 +62,13 @@
                             },
                             {
                                 "id": 1,
-                                "title": "Component 1",
+                                "title": "Component 2",
                                 "URL": "example.com",
                                 "icon": "fa fa-television"
                             },
                             {
                                 "id": 1,
-                                "title": "Component 1",
+                                "title": "Component 3",
                                 "URL": "example.com",
                                 "icon": "fa fa-television"
                             }
@@ -114,6 +114,26 @@
                         ]
                     }
                 ]
+            }
+        ],
+        "components": [
+            {
+                "id": 1,
+                "title": "Component 1",
+                "URL": "example.com",
+                "icon": "fa fa-television"
+            },
+            {
+                "id": 1,
+                "title": "Component 1",
+                "URL": "example.com",
+                "icon": "fa fa-television"
+            },
+            {
+                "id": 1,
+                "title": "Component 1",
+                "URL": "example.com",
+                "icon": "fa fa-television"
             }
         ],
         "schema": [

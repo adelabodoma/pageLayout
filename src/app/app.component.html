@@ -1,69 +1,114 @@
-<app-nav></app-nav>
+<!-- Nav  -->
+<app-nav (modeEdit)="chnageModeEdit($event)" (addEle)="addRow($event, 0)"></app-nav>
 
-<main class="container">
-  <div class="row section edit-mode" *ngFor="let row of list.rows; let i = index">
-    <div ngbDropdown>
-      <div class="add-row" ngbDropdownToggle>
-        <i class="fa fa-plus" title="Add"></i>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <ul class="row-type">
-            <li *ngFor="let item of schema" (click)="addRow(item.type, i)" class="item-type"> <i
-                class="{{item.iconClass}}"></i> {{ item.name}} </li>
-          </ul>
+<main class="container" [ngClass]="{'edit-mode': editMode}">
+  <div class="row section" *ngFor="let row of list.rows; let i = index">
+
+    <div *ngIf="editMode" class="position-relative">
+      <div ngbDropdown>
+        <div class="add-row" ngbDropdownToggle>
+          <i class="fa fa-plus" title="Add"></i>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <ul class="row-type">
+              <li *ngFor="let item of schema" (click)="addRow(item.type, i)" class="item-type"> <i
+                  class="{{item.iconClass}}"></i> {{ item.name}} </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div ngbDropdown>
-      <div class="edit-row" ngbDropdownToggle>
-        <i class="fa fa-edit" title="Edit"></i>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <ul class="row-type">
-            <li *ngFor="let item of schema" (click)="editRow(item.type, i)" class="item-type"> <i
-                class="{{item.iconClass}}"></i> {{ item.name}} </li>
-          </ul>
+      <div ngbDropdown>
+        <div class="edit-row" ngbDropdownToggle>
+          <i class="fa fa-edit" title="Edit"></i>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <ul class="row-type">
+              <li *ngFor="let item of schema" (click)="editRow(item.type, i)" class="item-type"> <i
+                  class="{{item.iconClass}}"></i> {{ item.name}} </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="remove-row">
-      <i class="fa fa-trash" (click)="removeRow(row.id)"></i>
+      <div class="remove-row">
+        <i class="fa fa-trash" (click)="removeRow(row.id)"></i>
+      </div>
     </div>
 
     <ng-container *ngIf="row.type.split('-').length === 1">
       <div [ngClass]="{'col-sm-12': row.type == 1, 'col-sm-6': row.type ==2, 'col-sm-4': row.type ==3}"
-        *ngFor="let column of row.columns">
+        *ngFor="let column of row.columns; let columnId = index">
         <div ngbDropdown>
           <div class="add-component--list" ngbDropdownToggle>
             <span class="add-component"><i class="fa fa-plus" title="Add"></i></span>
-            <!-- <i class="fa fa-edit" title="Edit"></i> -->
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
               <ul class="row-type">
-                <li *ngFor="let component of column.components" (click)="addComponent(item.type, i)" class="item-type"> <i
-                    class="{{component.icon}}"></i> {{ component.title}} </li>
+                <li *ngFor="let component of components" (click)="addComponent(i, columnId, component)"
+                  class="item-type"> <i class="{{component.icon}}"></i> {{ component.title}} </li>
               </ul>
             </div>
           </div>
-        </div>
-        <div class="component">
-          <span>{{column.title}}</span>
+          <!-- Components -->
+          <div class="component" *ngFor="let co of column.components; let componentId = index">
+            <span>{{co.title}}</span>
+            <span [innerHTML]="co.URL"></span>
+
+            <i *ngIf="editMode" class="fa fa-trash nav-link" (click)="removeComponent(i, columnId, componentId)"></i>
+          </div>
         </div>
       </div>
     </ng-container>
 
     <ng-container *ngIf="row.type == '1-2'">
-      <div [ngClass]="{'col-sm-4':  i==0, 'col-sm-8': i==1, 'col-sm-12': i !== 0 && i !== 1}"
-        *ngFor="let column of row.columns; let i = index">
-        <span class="add-component"><i class="fa fa-plus" title="Add"></i></span>
+      <div [ngClass]="{'col-sm-4':  columnId==0, 'col-sm-8': columnId==1, 'col-sm-12': columnId !== 0 && columnId !== 1}"
+        *ngFor="let column of row.columns; let columnId = index">
+        <div ngbDropdown>
+          <div class="add-component--list" ngbDropdownToggle>
+            <span class="add-component"><i class="fa fa-plus" title="Add"></i></span>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <ul class="row-type">
+                <li *ngFor="let component of components" (click)="addComponent(i, columnId, component)"
+                  class="item-type"> <i class="{{component.icon}}"></i> {{ component.title}} </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Components -->
+          <div class="component" *ngFor="let co of column.components; let componentId = index">
+            <span>{{co.title}}</span>
+            <i *ngIf="editMode" class="fa fa-trash nav-link" (click)="removeComponent(i, columnId, componentId)"></i>
+          </div>
+        </div>
       </div>
     </ng-container>
 
     <ng-container *ngIf="row.type == '2-1'">
-      <div [ngClass]="{'col-sm-8':  i==0, 'col-sm-4': i==1, 'col-sm-12': i !== 0 && i !== 1}"
-        *ngFor="let column of row.columns; let i = index">
-        <span class="add-component"><i class="fa fa-plus" title="Add"></i></span>
+      <div [ngClass]="{'col-sm-8':  columnId==0, 'col-sm-4': columnId==1, 'col-sm-12': columnId !== 0 && columnId !== 1}"
+        *ngFor="let column of row.columns; let columnId = index">
+        <div ngbDropdown>
+          <div class="add-component--list" ngbDropdownToggle>
+            <span class="add-component"><i class="fa fa-plus" title="Add"></i></span>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <ul class="row-type">
+                <li *ngFor="let component of components" (click)="addComponent(i, columnId, component)"
+                  class="item-type"> <i class="{{component.icon}}"></i> {{ component.title}} </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Components -->
+          <div class="component" *ngFor="let co of column.components; let componentId = index">
+            <span>{{co.title}}</span>
+            <i *ngIf="editMode" class="fa fa-trash nav-link" (click)="removeComponent(i, columnId, componentId)"></i>
+          </div>
+        </div>
       </div>
     </ng-container>
 
   </div>
 </main>
+
+<!-- بالنسبة لطرق الاشتراك فى اكتر من طريقة زى 111 وفروعنا ومكاتب خدماتى واون لاين و السنترالات والاوراق المطلوبة للخطوط
+المنزلية صورة بطاقة صاحب خط التليفون واخر فاتورة تليفون مدفوعة وبالنسبة للاوراق ممكن حضرتك تبعتها على الايميل
+Customer.Care@te.eg او الفاكس 02- 33320800او حضرتك تسلمها فى الفرع الاوراق المطلوبة للتعاقد صورة من تحقيق الشخصية لصاحب
+الخط ( فى حالة التليفون ورثة مطلوب صورة بطاقة وريث مباشر ) بالنسبة للعملاء الاجانب يتطلب ( صورة من بطاقة صاحب الخط وصورة
+من جواز السفر وصورة من عقد الايجار ) فى حالة أن حضرتك مستأجر ( صورة من عقد الإيجار و صورة من البطاقة الشخصية للمتعاقد )
+- صورة من أخر فاتورة تليفون مستحقة وتكون مسددة (فى حالة ان خط التليفون جديد ، احضار صورة من العقد) - مبلغ الاشتراك مقدم.
+في حاله ان حضرتك هيشترك عن طريق الفرع لازم تكون البطاقه ساريه -->
