@@ -1,0 +1,167 @@
+{
+    "page-info": {
+        "rows": [
+            {
+                "id": 1,
+                "type": "3",
+                "columns": [
+                    {
+                        "id": 1,
+                        "components": [
+                            {
+                                "id": 1,
+                                "title": "Component 1",
+                                "URL": "example.com",
+                                "icon": "fa fa-television"
+                            },
+                            {
+                                "id": 1,
+                                "title": "Component 2",
+                                "URL": "example.com",
+                                "icon": "fa fa-television"
+                            },
+                            {
+                                "id": 1,
+                                "title": "Component 3",
+                                "URL": "example.com",
+                                "icon": "fa fa-television"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "components": [
+                            {
+                                "id": 1,
+                                "title": "Component 1",
+                                "URL": "example.com",
+                                "icon": "fa fa-television"
+                            },
+                            {
+                                "id": 1,
+                                "title": "Component 2",
+                                "URL": "example.com",
+                                "icon": "fa fa-television"
+                            },
+                            {
+                                "id": 1,
+                                "title": "Component 3",
+                                "URL": "example.com",
+                                "icon": "fa fa-television"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 3,
+                        "components": [
+                            {
+                                "id": 1,
+                                "title": "Component 1",
+                                "URL": "example.com",
+                                "icon": "fa fa-television"
+                            },
+                            {
+                                "id": 1,
+                                "title": "Component 2",
+                                "URL": "example.com",
+                                "icon": "fa fa-television"
+                            },
+                            {
+                                "id": 1,
+                                "title": "Component 3",
+                                "URL": "example.com",
+                                "icon": "fa fa-television"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "type": "3",
+                "columns": [
+                    {
+                        "id": 1,
+                        "components": [
+                            {
+                                "id": 1,
+                                "title": "Component 2",
+                                "URL": "example.com",
+                                "icon": "fa fa-television"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "components": [
+                            {
+                                "id": 1,
+                                "title": "Component 2",
+                                "URL": "example.com",
+                                "icon": "fa fa-television"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 3,
+                        "components": [
+                            {
+                                "id": 2,
+                                "title": "Component 2",
+                                "URL": "example.com",
+                                "icon": "fa fa-television"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "components": [
+            {
+                "id": 1,
+                "title": "Component 1",
+                "URL": "example.com",
+                "icon": "fa fa-television"
+            },
+            {
+                "id": 1,
+                "title": "Component 1",
+                "URL": "example.com",
+                "icon": "fa fa-television"
+            },
+            {
+                "id": 1,
+                "title": "Component 1",
+                "URL": "example.com",
+                "icon": "fa fa-television"
+            }
+        ],
+        "schema": [
+            {
+                "name": "one Column",
+                "iconClass": "fa fa-columns",
+                "type": "1"
+            },
+            {
+                "name": "Two Columns",
+                "iconClass": "fa fa-columns",
+                "type": "2"
+            },
+            {
+                "name": "Three Columns",
+                "iconClass": "fa fa-columns",
+                "type": "3"
+            },
+            {
+                "name": "One-third left column",
+                "iconClass": "fa fa-columns",
+                "type": "1-2"
+            },
+            {
+                "name": "One-third right column",
+                "iconClass": "fa fa-columns",
+                "type": "2-1"
+            }
+        ]
+    }
+}
