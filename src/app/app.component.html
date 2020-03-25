@@ -50,7 +50,7 @@
           <!-- Components -->
           <div class="component" *ngFor="let co of column.components; let componentId = index">
             <span>{{co.title}}</span>
-            <!-- <span [innerHTML]="co.URL"></span> -->
+            <span [innerHTML]="co.html"></span>
 
             <i *ngIf="editMode" class="fa fa-trash nav-link" (click)="removeComponent(i, columnId, componentId)"></i>
           </div>

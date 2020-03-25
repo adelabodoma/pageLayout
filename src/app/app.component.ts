@@ -60,7 +60,19 @@ export class AppComponent implements OnInit {
   }
 
   editRow(type, index) {
+    // change type
     this.list.rows[index].type = type;
+
+    // d.	When col schema is changed from 3 col to 2 or 1 its components should be moved to prev col
+    if (this.list.rows[index].columns.length === 3) {
+      this.list.rows[index].columns[1].components.push(...this.list.rows[index].columns[2].components);
+      this.list.rows[index].columns.splice(2, 1);
+    }
+
+    // when col schema is changed from 2 to 3 append empty column 
+    if (this.list.rows[index].columns.length === 2 && type === '3') {
+      this.list.rows[index].columns.push({id: uuidv4(), components: []})
+    }
   }
 
   removeRow(id) {
