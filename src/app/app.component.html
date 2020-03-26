@@ -7,7 +7,7 @@
     <div *ngIf="editMode" class="position-relative">
       <div ngbDropdown>
         <div class="add-row" ngbDropdownToggle>
-          <i class="fa fa-plus" title="Add"></i>
+          <i class="fa fa-plus" title="Add Section"></i>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
             <ul class="row-type">
               <li *ngFor="let item of schema" (click)="addRow(item.type, i)" class="item-type"> <i
@@ -19,7 +19,7 @@
 
       <div ngbDropdown>
         <div class="edit-row" ngbDropdownToggle>
-          <i class="fa fa-edit" title="Edit"></i>
+          <i class="fa fa-edit" title="Edit"  title="Edit Section"></i>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
             <ul class="row-type">
               <li *ngFor="let item of schema" (click)="editRow(item.type, i)" class="item-type"> <i
@@ -30,7 +30,7 @@
       </div>
 
       <div class="remove-row">
-        <i class="fa fa-trash" (click)="removeRow(row.id)"></i>
+        <i class="fa fa-trash"  title="Delete Section" (click)="removeRow(row.id)"></i>
       </div>
     </div>
 
