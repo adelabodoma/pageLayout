@@ -8,7 +8,11 @@
                     {
                         "id": 1,
                         "components": [
-                           
+                            {
+                                "id": 1,
+                                "title": "asdasdas",
+                                "URL": "https://cdn.statically.io/gh/adelabodoma/trillo/master/index.html"
+                            }
                         ]
                     }
                 ]
@@ -18,20 +22,23 @@
             {
                 "id": 1,
                 "title": "Component 1",
-                "URL": "example.com",
-                "icon": "fa fa-television"
+                "icon": "fa fa-television",
+                "URL": "https://cdn.statically.io/gh/adelabodoma/trillo/master/index.html"
+
             },
             {
                 "id": 1,
                 "title": "Component 1",
-                "URL": "example.com",
-                "icon": "fa fa-television"
+                "icon": "fa fa-television",
+                "URL": "https://cdn.statically.io/gh/adelabodoma/trillo/master/index.html"
+
             },
             {
                 "id": 1,
                 "title": "Component 1",
-                "URL": "example.com",
-                "icon": "fa fa-television"
+                "icon": "fa fa-television",
+                "URL": "https://cdn.statically.io/gh/adelabodoma/trillo/master/index.html"
+
             }
         ],
         "schema": [

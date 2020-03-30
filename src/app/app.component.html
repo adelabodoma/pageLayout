@@ -49,9 +49,8 @@
           </div>
           <!-- Components -->
           <div class="component" *ngFor="let co of column.components; let componentId = index">
-            <span>{{co.title}}</span>
-            <span [innerHTML]="co.html"></span>
-
+            <span *ngIf="editMode">{{co.title}}</span>
+            <iframe *ngIf="!editMode" [src]="sanitizer.bypassSecurityTrustResourceUrl(co.URL)" height="200" width="200" frameborder="0"></iframe>
             <i *ngIf="editMode" class="fa fa-trash nav-link" (click)="removeComponent(i, columnId, componentId)"></i>
           </div>
         </div>
@@ -73,7 +72,8 @@
           </div>
           <!-- Components -->
           <div class="component" *ngFor="let co of column.components; let componentId = index">
-            <span>{{co.title}}</span>
+            <span *ngIf="editMode">{{co.title}}</span>
+            <iframe *ngIf="!editMode" [src]="sanitizer.bypassSecurityTrustResourceUrl(co.URL)" height="200" width="200" frameborder="0"></iframe>
             <i *ngIf="editMode" class="fa fa-trash nav-link" (click)="removeComponent(i, columnId, componentId)"></i>
           </div>
         </div>
@@ -95,7 +95,8 @@
           </div>
           <!-- Components -->
           <div class="component" *ngFor="let co of column.components; let componentId = index">
-            <span>{{co.title}}</span>
+            <span *ngIf="editMode">{{co.title}}</span>
+            <iframe *ngIf="!editMode" [src]="sanitizer.bypassSecurityTrustResourceUrl(co.URL)" height="200" width="200" frameborder="0"></iframe>
             <i *ngIf="editMode" class="fa fa-trash nav-link" (click)="removeComponent(i, columnId, componentId)"></i>
           </div>
         </div>

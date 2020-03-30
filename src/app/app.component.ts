@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { HttpClient } from '@angular/common/http';
 
 import * as data from '../assets/data.json'
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ export class AppComponent implements OnInit {
   public components;
   public editMode: boolean;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.list = data['default']['page-info'];

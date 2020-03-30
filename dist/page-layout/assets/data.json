@@ -3,114 +3,12 @@
         "rows": [
             {
                 "id": 1,
-                "type": "3",
+                "type": "1",
                 "columns": [
                     {
                         "id": 1,
                         "components": [
-                            {
-                                "id": 1,
-                                "title": "Component 1",
-                                "URL": "example.com",
-                                "icon": "fa fa-television"
-                            },
-                            {
-                                "id": 1,
-                                "title": "Component 2",
-                                "URL": "example.com",
-                                "icon": "fa fa-television"
-                            },
-                            {
-                                "id": 1,
-                                "title": "Component 3",
-                                "URL": "example.com",
-                                "icon": "fa fa-television"
-                            }
-                        ]
-                    },
-                    {
-                        "id": 2,
-                        "components": [
-                            {
-                                "id": 1,
-                                "title": "Component 1",
-                                "URL": "example.com",
-                                "icon": "fa fa-television"
-                            },
-                            {
-                                "id": 1,
-                                "title": "Component 2",
-                                "URL": "example.com",
-                                "icon": "fa fa-television"
-                            },
-                            {
-                                "id": 1,
-                                "title": "Component 3",
-                                "URL": "example.com",
-                                "icon": "fa fa-television"
-                            }
-                        ]
-                    },
-                    {
-                        "id": 3,
-                        "components": [
-                            {
-                                "id": 1,
-                                "title": "Component 1",
-                                "URL": "example.com",
-                                "icon": "fa fa-television"
-                            },
-                            {
-                                "id": 1,
-                                "title": "Component 2",
-                                "URL": "example.com",
-                                "icon": "fa fa-television"
-                            },
-                            {
-                                "id": 1,
-                                "title": "Component 3",
-                                "URL": "example.com",
-                                "icon": "fa fa-television"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "id": 2,
-                "type": "3",
-                "columns": [
-                    {
-                        "id": 1,
-                        "components": [
-                            {
-                                "id": 1,
-                                "title": "Component 2",
-                                "URL": "example.com",
-                                "icon": "fa fa-television"
-                            }
-                        ]
-                    },
-                    {
-                        "id": 2,
-                        "components": [
-                            {
-                                "id": 1,
-                                "title": "Component 2",
-                                "URL": "example.com",
-                                "icon": "fa fa-television"
-                            }
-                        ]
-                    },
-                    {
-                        "id": 3,
-                        "components": [
-                            {
-                                "id": 2,
-                                "title": "Component 2",
-                                "URL": "example.com",
-                                "icon": "fa fa-television"
-                            }
+                           
                         ]
                     }
                 ]
