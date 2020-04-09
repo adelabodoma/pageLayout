@@ -62,9 +62,6 @@ export class WeatherComponent implements OnInit {
         }
         debugger
         this.weather = data;
-        setTimeout(() => {
-          this.media();
-        }, 2000);
       })
   }
 

@@ -18,8 +18,8 @@ export interface ListItem {
 }
 export interface ItemComponents {
     id: string;
-    cssClass: string;
     components: ItemComponent[];
+    cssClass?: string;
 }
 export interface ItemComponent {
     id: string;

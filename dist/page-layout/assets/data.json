@@ -8,7 +8,12 @@
                     {
                         "id": 1,
                         "components": [
-                           
+                            {
+                                "id": 1,
+                                "title": "FAQ",
+                                "icon":"fa fa-tasks",
+                                "component": null
+                            }
                         ]
                     }
                 ]
@@ -17,21 +22,65 @@
         "components": [
             {
                 "id": 1,
-                "title": "Component 1",
-                "URL": "example.com",
-                "icon": "fa fa-television"
+                "title": "FAQ",
+                "icon": "fa fa-quora",
+                "component": null,
+                "setting": {
+                    "controlType": "input",
+                    "label": "Change Something!",
+                    "value": "Welcome to new value",
+                    "controlId": "input1"
+                }
             },
             {
-                "id": 1,
-                "title": "Component 1",
-                "URL": "example.com",
-                "icon": "fa fa-television"
+                "id": 2,
+                "title": "Todo List",
+                "icon": "fa fa-tasks",
+                "component": null
             },
             {
-                "id": 1,
-                "title": "Component 1",
-                "URL": "example.com",
-                "icon": "fa fa-television"
+                "id": 3,
+                "title": "Count Down",
+                "icon": "fa fa-clock-o",
+                "component": null
+            },
+            {
+                "id": 4,
+                "title": "Weather",
+                "icon": "fa fa-cloud",
+                "component": null,
+                "setting": {
+                    "controlType": "select",
+                    "label": "Change Location",
+                    "selected": null,
+                    "options": [
+                        {
+                            "name": "Current Location",
+                            "value": "current"
+                        },
+                        {
+                            "name": "Russia",
+                            "value": "105.318756-61.524010"
+                        },
+                        {
+                            "name": "France",
+                            "value": "46.227638-2.213749"
+                        }
+                    ],
+                    "controlId": "select1"
+                }
+            },
+            {
+                "id": 4,
+                "title": "Embed",
+                "icon": "fa fa-eyedropper",
+                "component": null,
+                "setting": {
+                    "controlType": "input",
+                    "label": "Website address or embed code",
+                    "value": " ",
+                    "controlId": "input2"
+                }
             }
         ],
         "schema": [
