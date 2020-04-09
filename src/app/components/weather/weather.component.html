@@ -1,0 +1,38 @@
+<!-- Loader  -->
+<div class="loader">
+    <div></div>
+</div>
+
+<main class="container weatherContainer">
+    <!-------- Weather Header Start -->
+    <header class="header">
+        <a href="" class="logo" title="Logo">Weather</a>
+        <div class="weather-nav">
+            <a href="#" [ngClass]="{'weather-nav__link--active': tempType == 'C'}" (click)="tempType = 'C'"
+                class="weather-nav__link weather-nav__link--celecus" data-mode="C" title="Celecus">C</a>
+            <a href="#" [ngClass]="{'weather-nav__link--active': tempType == 'F'}" (click)="tempType = 'F'"
+                class="weather-nav__link weather-nav__link--fehrenhite" title="Fehrenhite" data-mode="F">F</a>
+        </div>
+    </header>
+    <!-------- Weather Header End -->
+
+
+    <!-------- Weather Status Start -->
+    <section class="weather-status">
+
+        <div class="currently">
+            <h2 class="currently__city">{{weather.timezone}}</h2>
+            <h3 class="currently__date">{{weather.currently.time | date}}</h3>
+            <h3 class="currently__status">{{weather.currently.summary}}</h3>
+        </div>
+
+        <div class="currently">
+            <span class="currently__temperature degree">{{tempConvertor(weather.currently.temperature)}}</span>
+            <span class="currently__today-high degree">{{tempConvertor(weather.daily.data[0].temperatureHigh)}}</span>
+            <span class="separator">/</span>
+            <span class="currently__today-low degree">{{tempConvertor(weather.daily.data[0].temperatureLow)}}</span>
+        </div>
+    </section>
+    <p class="currently__today-summary">{{weather.daily.summary}}</p>
+
+</main>

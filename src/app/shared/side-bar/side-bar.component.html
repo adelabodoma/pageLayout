@@ -1,0 +1,6 @@
+<div class="side-bar" [ngClass]="{'open': open}">
+    <i class="fa fa-close close-icon" (click)="open = false"></i>
+    <app-component-settings (outSettings)="onReciveSettings($event)" [setting]="setting"></app-component-settings>
+
+    <!-- {{setting | json}} -->
+</div>

@@ -1,5 +1,8 @@
 <!-- Nav  -->
 <app-nav (modeEdit)="chnageModeEdit($event)" (addEle)="addRow($event, 0)"></app-nav>
+<app-side-bar (universeSettings)="onReciveSettings($event)" [setting]="componentSetting" [open]="openModal">
+</app-side-bar>
+
 
 <main class="container" [ngClass]="{'edit-mode': editMode}">
   <div class="row section" *ngFor="let row of list.rows; let i = index">
@@ -19,7 +22,7 @@
 
       <div ngbDropdown>
         <div class="edit-row" ngbDropdownToggle>
-          <i class="fa fa-edit" title="Edit"  title="Edit Section"></i>
+          <i class="fa fa-edit" title="Edit" title="Edit Section"></i>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
             <ul class="row-type">
               <li *ngFor="let item of schema" (click)="editRow(item.type, i)" class="item-type"> <i
@@ -30,16 +33,15 @@
       </div>
 
       <div class="remove-row">
-        <i class="fa fa-trash"  title="Delete Section" (click)="removeRow(row.id)"></i>
+        <i class="fa fa-trash" title="Delete Section" (click)="removeRow(row.id)"></i>
       </div>
     </div>
 
-    <ng-container *ngIf="row.type.split('-').length === 1">
-      <div [ngClass]="{'col-sm-12': row.type == 1, 'col-sm-6': row.type ==2, 'col-sm-4': row.type ==3}"
-        *ngFor="let column of row.columns; let columnId = index">
+    <ng-container>
+      <div class="{{column.cssClass}}" *ngFor="let column of row.columns; let columnId = index">
         <div ngbDropdown>
           <div class="add-component--list" ngbDropdownToggle>
-            <span class="add-component"><i class="fa fa-plus" title="Add"></i></span>
+            <span *ngIf="editMode" class="add-component"><i class="fa fa-plus" title="Add"></i></span>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
               <ul class="row-type">
                 <li *ngFor="let component of components" (click)="addComponent(i, columnId, component)"
@@ -47,61 +49,19 @@
               </ul>
             </div>
           </div>
-          <!-- Components -->
-          <div class="component" *ngFor="let co of column.components; let componentId = index">
+          <div class="component" [ngClass]="{'editMode': editMode}"
+            *ngFor="let co of column.components; let componentId = index">
             <span *ngIf="editMode">{{co.title}}</span>
-            <iframe *ngIf="!editMode" [src]="sanitizer.bypassSecurityTrustResourceUrl(co.URL)" height="200" width="200" frameborder="0"></iframe>
+
+            <app-components *ngIf="!editMode" [data]='co.setting' [component]='co.component'></app-components>
+
             <i *ngIf="editMode" class="fa fa-trash nav-link" (click)="removeComponent(i, columnId, componentId)"></i>
+            <i *ngIf="editMode" class="fa fa-edit nav-link"
+              (click)="onAddComponentSetting(co.setting, i, columnId, componentId)"></i>
+
           </div>
         </div>
       </div>
     </ng-container>
-
-    <ng-container *ngIf="row.type == '1-2'">
-      <div [ngClass]="{'col-sm-4':  columnId==0, 'col-sm-8': columnId==1, 'col-sm-12': columnId !== 0 && columnId !== 1}"
-        *ngFor="let column of row.columns; let columnId = index">
-        <div ngbDropdown>
-          <div class="add-component--list" ngbDropdownToggle>
-            <span class="add-component"><i class="fa fa-plus" title="Add"></i></span>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <ul class="row-type">
-                <li *ngFor="let component of components" (click)="addComponent(i, columnId, component)"
-                  class="item-type"> <i class="{{component.icon}}"></i> {{ component.title}} </li>
-              </ul>
-            </div>
-          </div>
-          <!-- Components -->
-          <div class="component" *ngFor="let co of column.components; let componentId = index">
-            <span *ngIf="editMode">{{co.title}}</span>
-            <iframe *ngIf="!editMode" [src]="sanitizer.bypassSecurityTrustResourceUrl(co.URL)" height="200" width="200" frameborder="0"></iframe>
-            <i *ngIf="editMode" class="fa fa-trash nav-link" (click)="removeComponent(i, columnId, componentId)"></i>
-          </div>
-        </div>
-      </div>
-    </ng-container>
-
-    <ng-container *ngIf="row.type == '2-1'">
-      <div [ngClass]="{'col-sm-8':  columnId==0, 'col-sm-4': columnId==1, 'col-sm-12': columnId !== 0 && columnId !== 1}"
-        *ngFor="let column of row.columns; let columnId = index">
-        <div ngbDropdown>
-          <div class="add-component--list" ngbDropdownToggle>
-            <span class="add-component"><i class="fa fa-plus" title="Add"></i></span>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <ul class="row-type">
-                <li *ngFor="let component of components" (click)="addComponent(i, columnId, component)"
-                  class="item-type"> <i class="{{component.icon}}"></i> {{ component.title}} </li>
-              </ul>
-            </div>
-          </div>
-          <!-- Components -->
-          <div class="component" *ngFor="let co of column.components; let componentId = index">
-            <span *ngIf="editMode">{{co.title}}</span>
-            <iframe *ngIf="!editMode" [src]="sanitizer.bypassSecurityTrustResourceUrl(co.URL)" height="200" width="200" frameborder="0"></iframe>
-            <i *ngIf="editMode" class="fa fa-trash nav-link" (click)="removeComponent(i, columnId, componentId)"></i>
-          </div>
-        </div>
-      </div>
-    </ng-container>
-
   </div>
 </main>

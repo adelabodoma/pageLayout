@@ -1,3 +1,4 @@
+import { Type } from '@angular/core';
 
 export interface Schema {
     name: string;
@@ -17,11 +18,18 @@ export interface ListItem {
 }
 export interface ItemComponents {
     id: string;
-    components: ItemComponent[]
+    cssClass: string;
+    components: ItemComponent[];
 }
 export interface ItemComponent {
     id: string;
     title: string;
-    URL: string;
-    icon: string
+    icon: string;
+    component: Icomponent;
+    setting: any
+}
+
+
+export interface Icomponent {
+    component: Type<any>;
 }

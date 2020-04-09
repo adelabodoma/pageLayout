@@ -1,0 +1,14 @@
+<div [ngSwitch]="setting?.controlType">
+    <div class="form-group" *ngSwitchCase="'input'">
+        <label [for]="setting?.controlId">{{setting?.label}}</label>
+        <input [id]="setting?.controlId" [(ngModel)]="setting.value"  [type]="setting?.controlType" [value]="setting?.value">
+    </div>
+    <div class="form-group" *ngSwitchCase="'select'">
+        <label [for]="setting?.controlId">{{setting?.label}}</label>
+       <select [id]="setting?.controlId" [(ngModel)]="setting.selected">
+           <option [value]="option.value" *ngFor="let option of setting?.options">{{option.name}}</option>
+       </select>
+    </div>
+</div>
+
+<button class="save" (click)="onSubmitSettings()">Save Changes</button>

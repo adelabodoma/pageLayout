@@ -1,0 +1,23 @@
+label {
+    display: block;
+}
+input {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+}
+
+select {
+    width: 100%;
+    padding: 5px;
+}
+
+.save {
+    border: 0;
+    background-color: #ca5010;
+    padding: 7px 13px;
+    color: #fff;
+    margin-top: 20px;
+}

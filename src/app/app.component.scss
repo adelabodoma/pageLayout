@@ -121,12 +121,21 @@
   margin: 10px 0;
   min-height: 50px;
   background-color: #eee;
-  padding: 20px;
+  padding: 0px;
 
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+
+  .fa-trash  {
+    margin-left: auto;
+  }
 }
 
+.component.editMode {
+  align-items: center;
+  padding: 10px;
+}
   
 .nav-link {
   color: #333;

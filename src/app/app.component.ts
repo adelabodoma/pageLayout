@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { List } from './data-interface.js';
+import { Component, OnInit, ComponentFactoryResolver, ViewChild, Output } from '@angular/core';
+import { List, Icomponent, ListItem } from './data-interface.js';
 import { v4 as uuidv4 } from 'uuid';
 
 import { HttpClient } from '@angular/common/http';
 
 import * as data from '../assets/data.json'
 import { DomSanitizer } from '@angular/platform-browser';
+import { LoadComponentService } from './components/load-component.service.js';
 
 @Component({
   selector: 'app-root',
@@ -13,18 +14,40 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
   title = 'page-layout';
   public list: List;
   public schema;
   public components;
   public editMode: boolean;
+  private componentsList: Icomponent[];
+  public componentSetting: any;
+  @Output() openModal: boolean = false;
 
-  constructor(private http: HttpClient, public sanitizer: DomSanitizer) { }
+  public currentEditRowIndex: number;
+  public currentEditColumnIndex: number;
+  public currentEditComponentIndex: number;
+
+
+  constructor(private http: HttpClient, public sanitizer: DomSanitizer,
+    private loadComponentService: LoadComponentService) { }
 
   ngOnInit() {
     this.list = data['default']['page-info'];
     this.schema = this.list.schema;
     this.components = this.list.components
+
+    this.componentsList = this.loadComponentService.getComponents();
+
+    // map component 
+    this.list.components.forEach((co, index) => {
+      co.component = this.componentsList[index]
+    });
+
+    // add css dynamic 
+    this.list.rows.forEach(row => {
+      this.dynamicCSSClasses(row.type, row);
+    })
   }
 
   addRow(type, index) {
@@ -58,6 +81,8 @@ export class AppComponent implements OnInit {
       columns: columns
     })
 
+    // dynamic css class 
+    this.dynamicCSSClasses(type, this.list.rows[index])
   }
 
   editRow(type, index) {
@@ -65,15 +90,26 @@ export class AppComponent implements OnInit {
     this.list.rows[index].type = type;
 
     // d.	When col schema is changed from 3 col to 2 or 1 its components should be moved to prev col
-    if (this.list.rows[index].columns.length === 3) {
+    if (this.list.rows[index].columns.length === 3 && (type === '2' || type === '2-1' || type === '1-2')) {
       this.list.rows[index].columns[1].components.push(...this.list.rows[index].columns[2].components);
       this.list.rows[index].columns.splice(2, 1);
     }
 
-    // when col schema is changed from 2 to 3 append empty column 
-    if (this.list.rows[index].columns.length === 2 && type === '3') {
-      this.list.rows[index].columns.push({id: uuidv4(), components: []})
+    if (this.list.rows[index].columns.length === 3 && type === '1') {
+      this.list.rows[index].columns[0].components.push(...this.list.rows[index].columns[1].components);
+      this.list.rows[index].columns[0].components.push(...this.list.rows[index].columns[2].components);
+      this.list.rows[index].columns.splice(1, 3);
     }
+
+    // when col schema is changed from 2 to 3 append empty column 
+    if (this.list.rows[index].columns.length < type) {
+      while (this.list.rows[index].columns.length < type) {
+        this.list.rows[index].columns.push({ id: uuidv4(), components: [] })
+      }
+    }
+
+    // add dynamic css class 
+    this.dynamicCSSClasses(type, this.list.rows[index])
   }
 
   removeRow(id) {
@@ -82,11 +118,6 @@ export class AppComponent implements OnInit {
 
   addComponent(rowId, columnId, component) {
     this.list.rows[rowId].columns[columnId].components.push(component);
-    console.log(this.list.rows)
-
-    this.http.get('aa.html').subscribe(res=>{
-      debugger
-    })
   }
 
   removeComponent(rowId, columnId, componentId) {
@@ -97,4 +128,48 @@ export class AppComponent implements OnInit {
     this.editMode = mode;
   }
 
+  dynamicCSSClasses(type, row: ListItem) {
+    switch (type) {
+      case '1':
+        row.columns.forEach(col => {
+          col.cssClass = 'col-sm-12'
+        });
+        break;
+      case '2':
+        row.columns.forEach(col => {
+          col.cssClass = 'col-sm-6'
+        });
+        break;
+      case '3':
+        row.columns.forEach(col => {
+          col.cssClass = 'col-sm-4'
+        });
+        break;
+      case '1-2':
+        row.columns[0].cssClass = 'col-sm-4';
+        row.columns[1].cssClass = 'col-sm-8';
+        break;
+      case '2-1':
+        row.columns[0].cssClass = 'col-sm-8';
+        row.columns[1].cssClass = 'col-sm-4';
+        break;
+      default:
+        break;
+    }
+  }
+
+  onAddComponentSetting(setting, rowIndex, columnIndex, componentIndex) {
+    this.componentSetting = {...setting};
+    this.openModal = !this.openModal;
+
+    this.currentEditRowIndex = rowIndex;
+    this.currentEditColumnIndex = columnIndex;
+    this.currentEditComponentIndex = componentIndex;
+  }
+
+  onReciveSettings(event) {
+    this.list.rows[this.currentEditRowIndex].columns[this.currentEditColumnIndex].components[this.currentEditComponentIndex].setting = event;
+
+    this.openModal = !this.openModal;
+  }
 }

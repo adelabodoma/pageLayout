@@ -1,0 +1,300 @@
+// COLORS
+$color-white: #fff;
+$color-white-grey: rgba(255, 255, 255, 0.25);
+$color-white-grey-1: rgba(255, 255, 255, 0.75);
+
+// Loader
+$loader-bg: rgba(46, 85, 111, 1);
+
+//37.5 = 600
+@media screen and (max-width: 37.5em) {
+    html {
+        font-size: 10px;
+    }
+}
+
+
+// Placeholders
+%degreeSign {
+    &::after {
+        content: "o";
+        position: absolute;
+        font-size: 0.5em;
+        top: -10px;
+    }
+}
+
+// WEATHER LOGO
+.logo {
+    font-size: 1.25rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    color: inherit;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+// HEADER
+.weather-nav {
+    display: flex;
+    justify-content: center;
+
+    margin-left: auto;
+
+    &__link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 1rem;
+        color: inherit;
+        width: 76px;
+        height: 48px;
+        text-decoration: none;
+        cursor: pointer;
+
+        &--active {
+            background-color: $color-white-grey;
+            border-left: 2px solid $color-white;
+        }
+    }
+}
+
+// WEATHER STATUS
+.weather-status {
+    display: flex;
+    justify-content: space-between;
+
+    padding-top: 10px; // as per design
+
+    .currently {
+        &__city {
+            font-size: 1.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        &__date {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+
+        &__status {
+            font-size: 1.875rem;
+            // padding-left: 20px;
+        }
+
+        &__temperature {
+            display: block;
+            font-size: 2rem;
+            position: relative;
+
+            @extend %degreeSign;
+        }
+
+        &__today-high,
+        &__today-low {
+            font-size: 1.25rem;
+            letter-spacing: 0.05rem;
+            font-weight: 400;
+            position: relative;
+            margin: 20px 0;
+            display: inline-block;
+
+            @extend %degreeSign;
+        }
+
+        &__today-low {
+            color: $color-white-grey-1;
+        }
+
+        &__today-summary {
+            font-size: 1.5rem;
+            margin-bottom: 100px;
+        }
+
+        &:last-of-type {
+            text-align: right;
+            padding-right: 43px; // the width of temp degree symbol
+        }
+    }
+
+    .separator {
+        font-size: 2rem;
+        font-weight: 400;
+        margin: 0 10px;
+    }
+}
+
+// SWITCH BUTTON
+.switch-buttons {
+    border-bottom: 1px solid $color-white-grey;
+    .button {
+        display: inline-block;
+        font-size: 1.375rem;
+        color: $color-white;
+        text-decoration: none;
+        padding: 5px 10px;
+        margin-right: 50px;
+        padding-bottom: 5px;
+
+        &--active {
+            border-bottom: 3px solid $color-white;
+        }
+
+        &:hover {
+            border-bottom: 3px solid $color-white;
+        }
+    }
+}
+
+// TEMPERATURE
+.temperature {
+    text-align: center;
+
+    &:not(:last-child) {
+        margin-right: 70px;
+    }
+
+    &__time {
+        font-size: 1.3rem;
+        font-weight: 400;
+        margin-bottom: 10px;
+    }
+
+    &__degree {
+        position: relative;
+        margin-top: 10px;
+        font-weight: 400;
+        font-size: 1.6rem;
+        display: inline-block;
+
+        @extend %degreeSign;
+    }
+
+    &__temp {
+        font-size: 2.25rem;
+        font-weight: 400;
+        position: relative;
+        margin-top: 10px;
+
+        @extend %degreeSign;
+    }
+}
+
+// Small Device
+// 37.5em = 600px
+@media screen and(max-width: 37.5em) {
+    .weather-nav__link {
+        width: 50px;
+        height: 30px;
+    }
+
+    .weather-status {
+        padding-top: 50px;
+
+        flex-direction: column;
+
+        .currently {
+            text-align: center;
+            margin-bottom: 20px;
+
+            &__status {
+                padding-left: 0;
+            }
+
+            &__today-summary {
+                margin-bottom: 30px;
+            }
+
+            &__city {
+                font-size: 3rem;
+            }
+
+            &:last-of-type {
+                padding-right: 0;
+                text-align: center;
+            }
+        }
+    }
+
+    .temperature {
+        &__time,
+        &__degree {
+            font-size: 1.5rem;
+        }
+
+        &:not(:last-child) {
+            margin-right: 20px;
+        }
+    }
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $loader-bg;
+    z-index: 999;
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.loader div {
+    border: 4px solid $color-white;
+    opacity: 1;
+    border-radius: 50%;
+    animation: loader 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.loader.show {
+    display: flex;
+}
+
+@keyframes loader {
+    0% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+    }
+}
+
+//--------  CONTAINER
+.container {
+    padding: 15px;
+    font-weight: 400;
+    color: $color-white;
+    background-image: url("https://cdn.statically.io/gh/adelabodoma/INSTAWEATHER/master/assets/images/hero.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+//--------  HEADER
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+// Small Device
+// 37.5em = 600
+@media screen and(max-width: 37.5em) {
+    .container {
+        padding: 20px;
+    }
+}

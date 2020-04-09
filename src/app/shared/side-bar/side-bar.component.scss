@@ -1,0 +1,24 @@
+body {
+    overflow: hidden;
+}
+
+.side-bar {
+    width: 400px;
+    position: absolute;
+    left: -400px;
+    z-index: 999999;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px #ccc;
+    transition: all 0.5s;
+}
+
+.side-bar.open {
+    left: 0;
+}
+
+.close-icon {
+    float: right;
+    font-size: 1rem;
+    color: #736d6d;
+}
